@@ -40,7 +40,7 @@ Aplikasi Xypher dibangun untuk memberikan pengalaman ini secara praktis dan inte
 ## 🛠️ Fitur Utama
 
 - ✅ **Login pengguna sederhana** (berbasis nama).
-- 📤 **Upload dokumen PDF dan Excel**.
+- 📤 **Upload dokumen PDF**.
 - 💬 **Interaksi tanya jawab dengan LLM** berdasarkan konteks dokumen.
 - ⚡ **Streaming jawaban secara real-time** (tanpa reload).
 - 🧠 **Penggunaan LLM lokal via Ollama**.
