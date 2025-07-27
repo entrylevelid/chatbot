@@ -1,0 +1,11 @@
+flask
+langchain
+langchain-community
+langchain-huggingface
+faiss-cpu
+sentence-transformers
+werkzeug
+ollama
+pypdf
+python-dotenv
+langchain-community[excel] unstructured

@@ -1,0 +1,71 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xypher</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/cs.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prism.css') }}">
+</head>
+<body>
+    <div class="welcome-container">
+        <span class="welcome-hand">👋</span>
+        <div class="welcome-text">
+            Welcome {{ user_name }}
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <div class="chat-card">
+                <div class="chat-header">
+                    <div class="left-section">
+                        <div class="model-selector">
+                            <select id="model-select" class="model-dropdown">
+                                <option value="deepseek-r1:7b">Deepseek-r1:7b</option>
+                                <option value="llama3.2:3b">Llama 3.2: 3b</option>
+                            </select>
+                        </div>
+                        <button class="clear-button">Clear Context</button>
+                    </div>
+                    <div class="center-section">
+                        <img src="{{ url_for('static', filename='images/cs.png') }}" alt="Xypher Icon" class="chat-icon">
+                        <h1>Xypher</h1>
+                    </div>
+                    <div class="chat-status">
+                        <span class="status-dot"></span>
+                        Online
+                    </div>
+                </div>
+                <div class="chat-container">
+                    <div class="messages" id="messages">
+                        <div class="message assistant">
+                            <div class="message-content">Hai {{ user_name }}, Ada yang bisa dibantu?</div>
+                        </div>
+                    </div>
+                    <form id="chat-form" class="input-container">
+                        <div class="input-row">
+                            <div class="attachment-container">
+                                <input type="file" id="pdf-upload" accept=".pdf,.xlsx,.xls" multiple class="file-input" />
+                                <button type="button" id="attach-button" class="attach-button">
+                                    📎
+                                </button>
+                            </div>
+                            <textarea 
+                                id="user-input" 
+                                placeholder="Type your message here..."
+                                rows="1"
+                            ></textarea>
+                            <button type="submit" id="send-button" disabled>Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

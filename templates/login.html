@@ -1,0 +1,245 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Xypher</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/cs.png') }}">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes typing {
+            0%, 90%, 100% {
+                width: 0;
+            }
+            30%, 80% {
+                width: 18.5em;
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                border-right-color: transparent;
+            }
+            50% {
+                border-right-color: #00B4D8;  /* Changed to electric blue */
+            }
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floating background elements */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #5A189A05, transparent 70%);
+            animation: float 6s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        body::before {
+            top: -150px;
+            left: -150px;
+        }
+
+        body::after {
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -3s;
+        }
+
+        .login-card {
+            background: linear-gradient(145deg, #1e1e1e, #242424);
+            padding: 2.5rem;
+            border-radius: 1.2rem;
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                0 8px 40px rgba(90, 24, 154, 0.05);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 0.6s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .login-header img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1.2rem;
+            animation: float 3s infinite ease-in-out;
+            filter: drop-shadow(0 4px 12px rgba(90, 24, 154, 0.2));
+        }
+
+        .login-header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            color: #00B4D8;  /* Changed to electric blue */
+            font-size: 1rem;
+            margin: 0.8rem 0 0;
+            opacity: 0.9;
+            font-weight: 500;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #00B4D8;  /* Changed cursor color to match */
+            padding-right: 4px;
+            animation: 
+                typing 4s steps(30) infinite,
+                blink 0.5s step-end infinite alternate;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.8rem;
+            background-color: rgba(41, 41, 41, 0.8);
+            color: #ffffff;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .login-form input:hover {
+            background-color: rgba(45, 45, 45, 0.9);
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #5A189A;
+            background-color: rgba(45, 45, 45, 1);
+            box-shadow: 
+                0 0 0 4px rgba(90, 24, 154, 0.1),
+                0 0 20px rgba(90, 24, 154, 0.15);
+        }
+
+        .login-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .login-form input:focus::placeholder {
+            opacity: 0.7;
+            transform: translateX(5px);
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            background: linear-gradient(135deg, #5A189A 0%, #00B4D8 100%);
+            color: white;
+            border: none;
+            border-radius: 0.8rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(90, 24, 154, 0.2);
+        }
+
+        .login-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(90, 24, 154, 0.3);
+            background: linear-gradient(135deg, #7B2CBF 0%, #00B4D8 100%);
+        }
+
+        .login-form button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(90, 24, 154, 0.2);
+        }
+
+        .credits {
+            position: absolute;
+            bottom: -2rem;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.75rem;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out 1s both;
+        }
+
+        .credits span {
+            color: #00B4D8;  /* Changed to electric blue */
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .credits {
+                font-size: 0.7rem;
+                bottom: -1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 2rem;
+                width: 85%;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="login-header">
+            <img src="{{ url_for('static', filename='images/cs.png') }}" alt="Xypher Icon">
+            <h1>Welcome to Xypher</h1>
+            <p class="tagline">Talk to me, I won't ghost you!</p>
+        </div>
+        <form class="login-form" method="POST" action="{{ url_for('submit_name') }}">
+            <input type="text" name="nama" placeholder="What should I call you?" required>
+            <button type="submit">Let's Chat!</button>
+        </form>
+        <div class="credits">AI powered by <span>deepseek</span> and <span>llama3.2</span></div>
+    </div>
+</body>
+</html>
