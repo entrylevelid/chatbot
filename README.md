@@ -4,19 +4,6 @@ Xypher adalah aplikasi asisten berbasis AI yang dirancang untuk menjawab pertany
 
 ---
 
-## 📌 Latar Belakang
-
-Di tengah perkembangan pesat teknologi informasi, kebutuhan untuk mencari dan memahami informasi dari dokumen digital semakin penting. Namun, membaca keseluruhan dokumen untuk menemukan informasi spesifik dapat memakan waktu dan melelahkan.
-
-Untuk menjawab tantangan ini, teknologi **Retrieval-Augmented Generation (RAG)** hadir sebagai solusi dengan menggabungkan kekuatan _search_ dan _language generation_. Dengan pendekatan ini, pengguna dapat:
-- Mengunggah file PDF atau Excel,
-- Mengajukan pertanyaan secara langsung,
-- Menerima jawaban berdasarkan konteks dokumen yang relevan.
-
-Aplikasi Xypher dibangun untuk memberikan pengalaman ini secara praktis dan interaktif melalui antarmuka web.
-
----
-
 ## ⚙️ Teknologi yang Digunakan
 
 ### 🔙 Backend (Python + Flask)
